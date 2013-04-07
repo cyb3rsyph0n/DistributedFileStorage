@@ -1,0 +1,31 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ordesignerObjectsDiagram dslVersion="1.0.0.0" absoluteBounds="0, 0, 11, 8.5" name="DistributedFileStorageDB">
+  <DataContextMoniker Name="/DistributedFileStorageDBDataContext" />
+  <nestedChildShapes>
+    <classShape Id="bc2c80e1-2b54-4aec-8e50-cda60a395b5a" absoluteBounds="4.25, 1.75, 2, 1.3862939453125">
+      <DataClassMoniker Name="/DistributedFileStorageDBDataContext/FileLocation" />
+      <nestedChildShapes>
+        <elementListCompartment Id="05e4a6b4-e64d-401a-84ee-b8aa8f7afefb" absoluteBounds="4.265, 2.21, 1.9700000000000002, 0.8262939453125" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="bc81b3d5-ba74-4c24-b6d9-719dccb5b52d" absoluteBounds="1.125, 4.125, 2, 1.5785953776041666">
+      <DataClassMoniker Name="/DistributedFileStorageDBDataContext/LogEntry" />
+      <nestedChildShapes>
+        <elementListCompartment Id="d5a16b02-5c10-4233-89f5-cfddfcac8d09" absoluteBounds="1.1399999999999997, 4.585, 1.9700000000000002, 1.0185953776041665" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="4e3234fe-969b-40ca-a771-cfbc2d047961" absoluteBounds="1.125, 1.375, 2, 2.5401025390625">
+      <DataClassMoniker Name="/DistributedFileStorageDBDataContext/FileMarker" />
+      <nestedChildShapes>
+        <elementListCompartment Id="4c52cd8f-0d13-4020-a6c6-ff2a7f9709d0" absoluteBounds="1.1400000000000001, 1.835, 1.9700000000000002, 1.9801025390625" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <associationConnector edgePoints="[(3.125 : 2.44314697265625); (4.25 : 2.44314697265625)]" fixedFrom="NotFixed" fixedTo="NotFixed">
+      <AssociationMoniker Name="/DistributedFileStorageDBDataContext/FileMarker/FileMarker_FileLocation" />
+      <nodes>
+        <classShapeMoniker Id="4e3234fe-969b-40ca-a771-cfbc2d047961" />
+        <classShapeMoniker Id="bc2c80e1-2b54-4aec-8e50-cda60a395b5a" />
+      </nodes>
+    </associationConnector>
+  </nestedChildShapes>
+</ordesignerObjectsDiagram>

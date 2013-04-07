@@ -1,0 +1,625 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:tns="http://tempuri.org/" xmlns:s="http://www.w3.org/2001/XMLSchema" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" targetNamespace="http://tempuri.org/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <s:schema elementFormDefault="qualified" targetNamespace="http://tempuri.org/">
+      <s:element name="GetStorageLocations">
+        <s:complexType />
+      </s:element>
+      <s:element name="GetStorageLocationsResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetStorageLocationsResult" type="tns:ArrayOfString" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArrayOfString">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="string" nillable="true" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="PutFile">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="folder" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="fileName" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="replicateCount" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="fileData" type="s:base64Binary" />
+            <s:element minOccurs="1" maxOccurs="1" name="overWrite" type="s:boolean" />
+            <s:element minOccurs="0" maxOccurs="1" name="extraInfo" type="tns:ArrayOfExtraInfo" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArrayOfExtraInfo">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="ExtraInfo" nillable="true" type="tns:ExtraInfo" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ExtraInfo">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="Key" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Value" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="PutFileResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="PutFileResult" type="s:boolean" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="BeginPutFileChunk">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="folder" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="fileName" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="replicateCount" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="overWrite" type="s:boolean" />
+            <s:element minOccurs="0" maxOccurs="1" name="extraInfo" type="tns:ArrayOfExtraInfo" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="BeginPutFileChunkResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="BeginPutFileChunkResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="PutFileChunk">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="fileID" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="fileData" type="s:base64Binary" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="PutFileChunkResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="PutFileChunkResult" type="s:boolean" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="EndPutFileChunk">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="fileID" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="EndPutFileChunkResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="EndPutFileChunkResult" type="s:boolean" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="AbortPutFileChunk">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="fileID" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="AbortPutFileChunkResponse">
+        <s:complexType />
+      </s:element>
+      <s:element name="GetFile">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="folder" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="fileName" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetFileResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetFileResult" type="s:base64Binary" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="BeginGetFileChunk">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="folder" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="fileName" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="BeginGetFileChunkResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="BeginGetFileChunkResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetFileChunk">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="fileID" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="length" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetFileChunkResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetFileChunkResult" type="s:base64Binary" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="EndGetFileChunk">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="fileID" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="EndGetFileChunkResponse">
+        <s:complexType />
+      </s:element>
+      <s:element name="DeleteFile">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="folder" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="fileName" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="DeleteFileResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="DeleteFileResult" type="s:boolean" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetDirectoryListing">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="folder" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="listOptions" type="tns:DirectoryListOptions" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:simpleType name="DirectoryListOptions">
+        <s:restriction base="s:string">
+          <s:enumeration value="AllSubDirectories" />
+          <s:enumeration value="SelectedFolderOnly" />
+        </s:restriction>
+      </s:simpleType>
+      <s:element name="GetDirectoryListingResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetDirectoryListingResult" type="tns:ArrayOfString" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetFileListing">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="folder" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="listOptions" type="tns:DirectoryListOptions" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetFileListingResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetFileListingResult" type="tns:ArrayOfRemoteFileInfo" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArrayOfRemoteFileInfo">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="RemoteFileInfo" nillable="true" type="tns:RemoteFileInfo" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="RemoteFileInfo">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="Folder" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="FileName" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="RemoteLocations" type="tns:ArrayOfString" />
+          <s:element minOccurs="1" maxOccurs="1" name="Length" type="s:long" />
+          <s:element minOccurs="1" maxOccurs="1" name="LastWriteTime" type="s:dateTime" />
+          <s:element minOccurs="1" maxOccurs="1" name="LastModTime" type="s:dateTime" />
+          <s:element minOccurs="1" maxOccurs="1" name="LastReadTime" type="s:dateTime" />
+          <s:element minOccurs="0" maxOccurs="1" name="ExtraInfo" type="tns:ArrayOfExtraInfo" />
+        </s:sequence>
+      </s:complexType>
+    </s:schema>
+  </wsdl:types>
+  <wsdl:message name="GetStorageLocationsSoapIn">
+    <wsdl:part name="parameters" element="tns:GetStorageLocations" />
+  </wsdl:message>
+  <wsdl:message name="GetStorageLocationsSoapOut">
+    <wsdl:part name="parameters" element="tns:GetStorageLocationsResponse" />
+  </wsdl:message>
+  <wsdl:message name="PutFileSoapIn">
+    <wsdl:part name="parameters" element="tns:PutFile" />
+  </wsdl:message>
+  <wsdl:message name="PutFileSoapOut">
+    <wsdl:part name="parameters" element="tns:PutFileResponse" />
+  </wsdl:message>
+  <wsdl:message name="BeginPutFileChunkSoapIn">
+    <wsdl:part name="parameters" element="tns:BeginPutFileChunk" />
+  </wsdl:message>
+  <wsdl:message name="BeginPutFileChunkSoapOut">
+    <wsdl:part name="parameters" element="tns:BeginPutFileChunkResponse" />
+  </wsdl:message>
+  <wsdl:message name="PutFileChunkSoapIn">
+    <wsdl:part name="parameters" element="tns:PutFileChunk" />
+  </wsdl:message>
+  <wsdl:message name="PutFileChunkSoapOut">
+    <wsdl:part name="parameters" element="tns:PutFileChunkResponse" />
+  </wsdl:message>
+  <wsdl:message name="EndPutFileChunkSoapIn">
+    <wsdl:part name="parameters" element="tns:EndPutFileChunk" />
+  </wsdl:message>
+  <wsdl:message name="EndPutFileChunkSoapOut">
+    <wsdl:part name="parameters" element="tns:EndPutFileChunkResponse" />
+  </wsdl:message>
+  <wsdl:message name="AbortPutFileChunkSoapIn">
+    <wsdl:part name="parameters" element="tns:AbortPutFileChunk" />
+  </wsdl:message>
+  <wsdl:message name="AbortPutFileChunkSoapOut">
+    <wsdl:part name="parameters" element="tns:AbortPutFileChunkResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetFileSoapIn">
+    <wsdl:part name="parameters" element="tns:GetFile" />
+  </wsdl:message>
+  <wsdl:message name="GetFileSoapOut">
+    <wsdl:part name="parameters" element="tns:GetFileResponse" />
+  </wsdl:message>
+  <wsdl:message name="BeginGetFileChunkSoapIn">
+    <wsdl:part name="parameters" element="tns:BeginGetFileChunk" />
+  </wsdl:message>
+  <wsdl:message name="BeginGetFileChunkSoapOut">
+    <wsdl:part name="parameters" element="tns:BeginGetFileChunkResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetFileChunkSoapIn">
+    <wsdl:part name="parameters" element="tns:GetFileChunk" />
+  </wsdl:message>
+  <wsdl:message name="GetFileChunkSoapOut">
+    <wsdl:part name="parameters" element="tns:GetFileChunkResponse" />
+  </wsdl:message>
+  <wsdl:message name="EndGetFileChunkSoapIn">
+    <wsdl:part name="parameters" element="tns:EndGetFileChunk" />
+  </wsdl:message>
+  <wsdl:message name="EndGetFileChunkSoapOut">
+    <wsdl:part name="parameters" element="tns:EndGetFileChunkResponse" />
+  </wsdl:message>
+  <wsdl:message name="DeleteFileSoapIn">
+    <wsdl:part name="parameters" element="tns:DeleteFile" />
+  </wsdl:message>
+  <wsdl:message name="DeleteFileSoapOut">
+    <wsdl:part name="parameters" element="tns:DeleteFileResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetDirectoryListingSoapIn">
+    <wsdl:part name="parameters" element="tns:GetDirectoryListing" />
+  </wsdl:message>
+  <wsdl:message name="GetDirectoryListingSoapOut">
+    <wsdl:part name="parameters" element="tns:GetDirectoryListingResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetFileListingSoapIn">
+    <wsdl:part name="parameters" element="tns:GetFileListing" />
+  </wsdl:message>
+  <wsdl:message name="GetFileListingSoapOut">
+    <wsdl:part name="parameters" element="tns:GetFileListingResponse" />
+  </wsdl:message>
+  <wsdl:portType name="DistributedStorageSoap">
+    <wsdl:operation name="GetStorageLocations">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">RETRIEVES REMOTE STORAGE LOCATIONS FROM CONFIG FILE</wsdl:documentation>
+      <wsdl:input message="tns:GetStorageLocationsSoapIn" />
+      <wsdl:output message="tns:GetStorageLocationsSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="PutFile">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">USED TO STORE A FILE SOMEWHERE IN THE LIST OF REMOTE SERVERS</wsdl:documentation>
+      <wsdl:input message="tns:PutFileSoapIn" />
+      <wsdl:output message="tns:PutFileSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="BeginPutFileChunk">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">USED TO CREATE A TEMP FILE WHICH WE WILL BEGIN SENDING CHUNKS OF DATA TO IN EFFORT TO STORE THE FILES ACCROSS THE DFS</wsdl:documentation>
+      <wsdl:input message="tns:BeginPutFileChunkSoapIn" />
+      <wsdl:output message="tns:BeginPutFileChunkSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="PutFileChunk">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">APPENDS UPLOADED BYTES TO THE FILEID WHICH WAS OBTAINED FROM BEGINPUTFILECHUNK</wsdl:documentation>
+      <wsdl:input message="tns:PutFileChunkSoapIn" />
+      <wsdl:output message="tns:PutFileChunkSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="EndPutFileChunk">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">USED TO END THE UPLOAD OF A FILE AND STORE IT ACCROSS THE DFS SYSTEMS</wsdl:documentation>
+      <wsdl:input message="tns:EndPutFileChunkSoapIn" />
+      <wsdl:output message="tns:EndPutFileChunkSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="AbortPutFileChunk">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">USED TO ABORT A FILE CHUNK UPLOAD</wsdl:documentation>
+      <wsdl:input message="tns:AbortPutFileChunkSoapIn" />
+      <wsdl:output message="tns:AbortPutFileChunkSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetFile">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">USED TO RETRIEVE A FILE FROM SOMEWHERE IN THE LIST OF REMOTE SERVERS</wsdl:documentation>
+      <wsdl:input message="tns:GetFileSoapIn" />
+      <wsdl:output message="tns:GetFileSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="BeginGetFileChunk">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">USED TO BEGIN RECEIVING A FILE FROM REMOTE STORAGE</wsdl:documentation>
+      <wsdl:input message="tns:BeginGetFileChunkSoapIn" />
+      <wsdl:output message="tns:BeginGetFileChunkSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetFileChunk">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">USED TO RECEIVE A CHUNK OF A FILE</wsdl:documentation>
+      <wsdl:input message="tns:GetFileChunkSoapIn" />
+      <wsdl:output message="tns:GetFileChunkSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="EndGetFileChunk">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">USED TO END GETTING OF FILE CHUNKS.  PREFORMS ALL CLEANUP</wsdl:documentation>
+      <wsdl:input message="tns:EndGetFileChunkSoapIn" />
+      <wsdl:output message="tns:EndGetFileChunkSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="DeleteFile">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">USED TO DELETE A FILE FROM DISTRIBUTED STORAGE</wsdl:documentation>
+      <wsdl:input message="tns:DeleteFileSoapIn" />
+      <wsdl:output message="tns:DeleteFileSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetDirectoryListing">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">USED TO RETRIEVE A DIRECTORY LISTING FOR A GIVEN FOLDER PASSED IN</wsdl:documentation>
+      <wsdl:input message="tns:GetDirectoryListingSoapIn" />
+      <wsdl:output message="tns:GetDirectoryListingSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetFileListing">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">USED TO RETRIEVE A FILE LISTING FOR A GIVEN FOLDER PASSED IN</wsdl:documentation>
+      <wsdl:input message="tns:GetFileListingSoapIn" />
+      <wsdl:output message="tns:GetFileListingSoapOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="DistributedStorageSoap" type="tns:DistributedStorageSoap">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="GetStorageLocations">
+      <soap:operation soapAction="http://tempuri.org/GetStorageLocations" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="PutFile">
+      <soap:operation soapAction="http://tempuri.org/PutFile" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="BeginPutFileChunk">
+      <soap:operation soapAction="http://tempuri.org/BeginPutFileChunk" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="PutFileChunk">
+      <soap:operation soapAction="http://tempuri.org/PutFileChunk" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="EndPutFileChunk">
+      <soap:operation soapAction="http://tempuri.org/EndPutFileChunk" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AbortPutFileChunk">
+      <soap:operation soapAction="http://tempuri.org/AbortPutFileChunk" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetFile">
+      <soap:operation soapAction="http://tempuri.org/GetFile" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="BeginGetFileChunk">
+      <soap:operation soapAction="http://tempuri.org/BeginGetFileChunk" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetFileChunk">
+      <soap:operation soapAction="http://tempuri.org/GetFileChunk" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="EndGetFileChunk">
+      <soap:operation soapAction="http://tempuri.org/EndGetFileChunk" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DeleteFile">
+      <soap:operation soapAction="http://tempuri.org/DeleteFile" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetDirectoryListing">
+      <soap:operation soapAction="http://tempuri.org/GetDirectoryListing" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetFileListing">
+      <soap:operation soapAction="http://tempuri.org/GetFileListing" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="DistributedStorageSoap12" type="tns:DistributedStorageSoap">
+    <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="GetStorageLocations">
+      <soap12:operation soapAction="http://tempuri.org/GetStorageLocations" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="PutFile">
+      <soap12:operation soapAction="http://tempuri.org/PutFile" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="BeginPutFileChunk">
+      <soap12:operation soapAction="http://tempuri.org/BeginPutFileChunk" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="PutFileChunk">
+      <soap12:operation soapAction="http://tempuri.org/PutFileChunk" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="EndPutFileChunk">
+      <soap12:operation soapAction="http://tempuri.org/EndPutFileChunk" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AbortPutFileChunk">
+      <soap12:operation soapAction="http://tempuri.org/AbortPutFileChunk" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetFile">
+      <soap12:operation soapAction="http://tempuri.org/GetFile" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="BeginGetFileChunk">
+      <soap12:operation soapAction="http://tempuri.org/BeginGetFileChunk" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetFileChunk">
+      <soap12:operation soapAction="http://tempuri.org/GetFileChunk" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="EndGetFileChunk">
+      <soap12:operation soapAction="http://tempuri.org/EndGetFileChunk" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DeleteFile">
+      <soap12:operation soapAction="http://tempuri.org/DeleteFile" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetDirectoryListing">
+      <soap12:operation soapAction="http://tempuri.org/GetDirectoryListing" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetFileListing">
+      <soap12:operation soapAction="http://tempuri.org/GetFileListing" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="DistributedStorage">
+    <wsdl:port name="DistributedStorageSoap" binding="tns:DistributedStorageSoap">
+      <soap:address location="http://localhost:49196/DistributedStorage.asmx" />
+    </wsdl:port>
+    <wsdl:port name="DistributedStorageSoap12" binding="tns:DistributedStorageSoap12">
+      <soap12:address location="http://localhost:49196/DistributedStorage.asmx" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

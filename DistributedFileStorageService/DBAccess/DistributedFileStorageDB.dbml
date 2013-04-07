@@ -1,0 +1,33 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Database Name="DSFileStorage" Class="DistributedFileStorageDBDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
+  <Table Name="dbo.dfsFileLocations" Member="FileLocations">
+    <Type Name="FileLocation">
+      <Column Name="LocationID" Type="System.String" DbType="VarChar(36) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="FileMarkerID" Type="System.String" DbType="VarChar(36) NOT NULL" CanBeNull="false" />
+      <Column Name="Location" Type="System.String" DbType="VarChar(100) NOT NULL" CanBeNull="false" />
+      <Association Name="FileMarker_FileLocation" Member="FileMarker" ThisKey="FileMarkerID" OtherKey="FileMarkerID" Type="FileMarker" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.dfsErrorLog" Member="LogEntries">
+    <Type Name="LogEntry">
+      <Column Name="RecordID" Type="System.String" DbType="VarChar(36) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="ErrorDate" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="ErrorText" Type="System.String" DbType="Text NOT NULL" CanBeNull="false" UpdateCheck="Never" />
+      <Column Name="Exception" Type="System.String" DbType="Text" CanBeNull="true" UpdateCheck="Never" />
+    </Type>
+  </Table>
+  <Table Name="dbo.dfsFileMarkers" Member="FileMarkers">
+    <Type Name="FileMarker">
+      <Column Name="FileMarkerID" Type="System.String" DbType="VarChar(36) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="Folder" Type="System.String" DbType="VarChar(1000) NOT NULL" CanBeNull="false" />
+      <Column Name="FileName" Type="System.String" DbType="VarChar(1000) NOT NULL" CanBeNull="false" />
+      <Column Name="Length" Type="System.Int64" DbType="BigInt NOT NULL" CanBeNull="false" />
+      <Column Name="LastWriteTime" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="LastReadTime" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="LastModTime" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="Hash" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="ExtraInfo" Type="System.Data.Linq.Binary" DbType="Image" CanBeNull="true" UpdateCheck="Never" />
+      <Association Name="FileMarker_FileLocation" Member="FileLocations" ThisKey="FileMarkerID" OtherKey="FileMarkerID" Type="FileLocation" />
+    </Type>
+  </Table>
+</Database>
